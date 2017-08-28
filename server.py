@@ -1,6 +1,6 @@
 import os
-from flask import Flask, request
-from twilio.jwt.client import TwilioCapability
+from flask import Flask, request, Response
+from twilio.jwt.client import ClientCapabilityToken
 import twilio.twiml
 
 # Account Sid and Auth Token can be found in your account dashboard
@@ -21,7 +21,7 @@ def token():
   auth_token = os.environ.get("AUTH_TOKEN", AUTH_TOKEN)
   app_sid = os.environ.get("APP_SID", APP_SID)
 
-  capability = TwilioCapability(account_sid, auth_token)
+  capability = ClientCapabilityToken(account_sid, auth_token)
 
   # This allows outgoing connections to TwiML application
   if request.values.get('allowOutgoing') != 'false':
