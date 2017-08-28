@@ -23,7 +23,7 @@
     },
     "CALLER_ID": {
       "description": "Phone number verified with your Twilio Account",
-      "required": true
+      "required": false
     }
   }
 }
