@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from twilio.util import TwilioCapability
+from twilio.jwt.client import TwilioCapability
 import twilio.twiml
 
 # Account Sid and Auth Token can be found in your account dashboard
@@ -33,7 +33,8 @@ def token():
     capability.allow_client_incoming(client)
 
   # This returns a token to use with Twilio based on the account and capabilities defined above
-  return capability.generate()
+  token = capability.generate()
+  return Response(token, mimetype='application/jwt')
 
 @app.route('/call', methods=['GET', 'POST'])
 def call():
